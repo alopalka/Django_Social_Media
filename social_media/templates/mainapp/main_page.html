@@ -8,5 +8,12 @@
 {% block content %}
 
 <h2>Hello world!</h2>
+{% for post in posts %}
+
+<h4>{{ post.author }}</h4>
+<p>{{ post.post_text }}</p>
+<h5>{{ post.likes }}</h5>
+
+{% endfor %}
 
 {% endblock %}
