@@ -1,13 +1,18 @@
 {% extends 'mainapp/main_template.html' %}
+{% load static %}
 
 {% block title %}
     Social Media - Login
 {% endblock %}
 
+{% block css_links %}
+<link rel="stylesheet" href="{% static 'css/authorization/style_authorization.css' %}">
+{% endblock %}
+
 
 {% block content %}
 
-<section>
+<section class="authorization-panel">
     <h4>Login</h4>
     <form method="POST" action="{% url 'authorization:login' %}">
         {% csrf_token %}

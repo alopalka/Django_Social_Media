@@ -1,0 +1,24 @@
+.authorization-panel{
+    height: 95%;
+    width: 80%;
+    background: pink;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.authorization-panel form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    height: 50%;
+    width: 40%;
+    background:honeydew;
+}
+
+.authorization-panel form p{
+    margin-bottom: 0;
+    padding-bottom: 0;
+}

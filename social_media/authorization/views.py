@@ -4,7 +4,7 @@ from django.contrib.auth import authenticate
 from django.contrib.auth import login
 
 
-def login_view(request,template="auth/login_page.html"):
+def login_view(request,template="authorization/login_page.html"):
 
     form=AuthenticationForm
 

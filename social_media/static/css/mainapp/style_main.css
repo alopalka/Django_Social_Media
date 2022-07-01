@@ -19,14 +19,26 @@ ul {
 
 a{
     text-decoration: none;
-    color: #002699;
+    color: #e6e6ff;
 }
 
 a:visited{
-    color: #002699;
+    color: #e6e6ff;
 }
 
+a:hover{
+    cursor: pointer;
+}
 
+/* GLOBAL VARABLES end */
+
+.global-container{
+    display: flex;
+    background: navajowhite;
+    height: 70vh;
+    align-items: center;
+    justify-content: center;
+}
 
 
 header{
@@ -42,7 +54,7 @@ header{
     justify-content: space-around;
     flex-direction: row;
     overflow: hidden;
-    background: #e6e6e6;
+    background: #000033;
 }
 
 
@@ -88,5 +100,5 @@ nav ul li a{
 }
 
 nav ul li a:hover{
-    background:  #ccd9ff;
+    background:  #000080;
 }
