@@ -10,7 +10,23 @@
     <title>{% block title %}{% endblock title %}</title>
 </head>
 <body>
+    <header>
+        <div class="navbar">
+            <a id="logo" href="{% url 'mainapp:main' %}">
+                <img id="logo" src="{% static 'img/mainapp/logo1.png' %}">
+            </a>
+            <nav>
+                <ul>
+                    {% if user.is_authenticated %}
+                        <li><a href="{% url 'authorization:logout' %}">Wyloguj</a></li>
+                    {% else %}
+                        <li><a href="{% url 'authorization:login' %}">Zaloguj</a></li>
+                    {% endif %}
+                </ul>
+            </nav>
+        </div>
+    </header>
     {% block content %}
     {% endblock %}
 </body>
-</html>
+</html> 

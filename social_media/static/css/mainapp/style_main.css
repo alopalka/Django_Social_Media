@@ -16,3 +16,77 @@ body{
 ul {
     list-style: none;
 }
+
+a{
+    text-decoration: none;
+    color: #002699;
+}
+
+a:visited{
+    color: #002699;
+}
+
+
+
+
+header{
+    min-height: 70px;
+    height: 8vh;
+}
+
+.navbar{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: row;
+    overflow: hidden;
+    background: #e6e6e6;
+}
+
+
+#logo{
+    height: 90%;
+    width: 70px;
+}
+
+#logo img{
+    height: 100%;
+    width: 100%;
+    object-fit: scale-down;
+}
+
+
+nav{
+    height: 90%;
+    width: 80%;
+}
+
+nav ul{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+nav ul li{
+    height: 95%;
+    width: 120px;
+    border-radius: 5px;
+}
+
+nav ul li a{
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;  
+}
+
+nav ul li a:hover{
+    background:  #ccd9ff;
+}

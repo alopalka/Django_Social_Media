@@ -130,6 +130,10 @@ LOGOUT_REDIRECT_URL='/'
 
 STATIC_URL = 'static/'
 
+STATICFILES_DIRS=[
+    r'/home/alopalka/Desktop/wszystko/programowanie/gity/Django_Social_Media/social_media/static',
+]
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
