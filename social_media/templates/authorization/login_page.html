@@ -13,14 +13,14 @@
 {% block content %}
 
 <section class="authorization-panel">
-    <h4>Login</h4>
+    <h3>Login to your account</h3>
     <form method="POST" action="{% url 'authorization:login' %}">
         {% csrf_token %}
         <p>Login:</p>
         {{ form.username }}
         <p>Password:</p>
         {{ form.password }}
-        <button type="submit">Login</button>
+        <button class="btn-classic" type="submit">Log in</button>
     </form>
 
 </section>

@@ -1,0 +1,32 @@
+{% extends 'mainapp/main_template.html' %}
+{% load static %}
+
+{% block title %}
+    Social Media - Posts
+{% endblock %}
+
+{% block css_links %}
+<link rel="stylesheet" href="{% static 'css/authorization/style_authorization.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<section class="posts-table">
+    <ul>
+        <li>
+            {% for post in posts %}.
+                <div class="top-section">
+                    <img src="{% static 'img/mainapp/user.png' %}" alt="{% static 'img/mainapp/notfound.png' %">
+                    <h4>User: {{ post.author }}</h4>
+                    <p>{{ post.created }}</p>
+                </div>
+                <div class="middle-section">
+                    <p>{{ post.text }}</p>
+                </div>
+                <div class="bottom-section"></div>
+            {% endfor %}
+        </li>
+    </ul>
+</section>
+
+{% endblock %}

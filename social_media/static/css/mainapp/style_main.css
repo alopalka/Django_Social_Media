@@ -26,15 +26,29 @@ a:visited{
     color: #e6e6ff;
 }
 
-a:hover{
+a:hover,button:hover{
     cursor: pointer;
 }
 
+
 /* GLOBAL VARABLES end */
+
+.btn-classic{
+    margin: 5px;
+    padding: 10px;
+    background-color: #000080;
+    font-size: medium;
+    font-weight: 400;
+    color: #fff;
+    border:#000080 1px solid;
+    border-radius: 5px;
+}
+
+/* buttons end*/
 
 .global-container{
     display: flex;
-    background: navajowhite;
+    background: #e5e5e5;
     height: 70vh;
     align-items: center;
     justify-content: center;
@@ -102,3 +116,5 @@ nav ul li a{
 nav ul li a:hover{
     background:  #000080;
 }
+
+/* navbar-end */
