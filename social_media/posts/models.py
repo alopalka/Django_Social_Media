@@ -3,7 +3,6 @@ from django.conf import settings
 
 class Post(models.Model):
 
-    id=models.AutoField(primary_key=True)
     author=models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE)
     text=models.TextField(max_length=2000)
     created=models.DateTimeField(auto_now_add=True)
@@ -16,15 +15,13 @@ class Post(models.Model):
 
 class Comment(models.Model):
 
-    id=models.AutoField(primary_key=True)
     post_parent=models.ForeignKey(Post,on_delete=models.CASCADE)
     author=models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE)
     comment=models.CharField(max_length=2000)
-    likes=models.ManyToManyField(settings.AUTH_USER_MODEL,related_name="likes")
-    likes=models.IntegerField()
+    likes=models.ManyToManyField(settings.AUTH_USER_MODEL,related_name="comment_likes")
 
     def __str__(self):
-        return "{} : {} : {}".format(self.post_parent,self.post_text,self.author)
+        return "{} : {} : {}".format(self.post_parent,self.comment,self.author)
 
         
 

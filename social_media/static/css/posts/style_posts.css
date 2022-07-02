@@ -68,3 +68,46 @@
     flex-direction: row;
 }
 
+#comments-ul{
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   flex-direction: column;
+}
+
+#comments-ul li{
+    height: 15vh;
+    width: 95%;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: rgb(231, 231, 231) 1px solid;
+}
+
+#comments-ul li *{
+    width: 100%;
+    margin: 0;
+}
+
+.upper{
+    height: 15%;
+}
+
+.middle{
+    height: 60%;
+    padding:3px 0px;
+}
+
+.lower{
+    height: 20%;
+}
+
+.lower button{
+    max-height: 100px;
+    max-width: 40px;
+    margin:0px;
+    margin-left:15px;
+    font-size: small;
+    padding:3px;
+}

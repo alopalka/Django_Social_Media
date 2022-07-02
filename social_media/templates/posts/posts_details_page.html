@@ -32,6 +32,30 @@
                 </button>
             </div>
         </li>
+        <li>
+            <div class="top-section">
+                <h4>Comments:</h4>
+            </div>
+            <ul id="comments-ul">
+                {% for comment in comments %}
+                <li>
+                    <div class="upper">
+                        <h5>{{comment.author}}</h5>
+                    </div>
+                    <div class="middle">
+                        {{comment.comment}}
+                    </div>
+                    <div class="lower">
+                        <button class="btn-classic">
+                            <a href="{% url 'posts:like_comment' pk=comment.pk %}">
+                                <p>👍 {% if comment.amount_of_likes > 0 %}{{ comment.amount_of_likes }}{% endif %}</p>
+                            </a>
+                        </button>
+                    </div>
+                </li>
+                {% endfor %}
+            </ul>
+        </li>
     </ul>
 </section>
 
