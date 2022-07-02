@@ -49,7 +49,7 @@ a:hover,button:hover{
 .global-container{
     display: flex;
     background: #e5e5e5;
-    height: 70vh;
+    min-height: 70vh;
     align-items: center;
     justify-content: center;
 }

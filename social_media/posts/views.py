@@ -8,6 +8,9 @@ def posts_view(request,template="posts/posts_page.html"):
 
     posts=Post.objects.filter()
 
+    for post in posts:
+        post.amount_of_likes=len(post.likes.all())
+
     context={
         'posts':posts,
     }

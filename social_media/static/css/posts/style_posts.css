@@ -1,0 +1,36 @@
+.posts-table{
+    height: 100%;
+    width: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-direction: column;
+    background: #fff;
+}
+
+.posts-table ul{
+    min-height: 90%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 5px;
+}
+
+.posts-table ul li{
+    height: 45vh;
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: khaki;
+    flex-direction: column;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.posts-table ul li h4
+
+.posts-table ul li *{
+    background: pink;
+}

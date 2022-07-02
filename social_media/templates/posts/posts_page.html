@@ -6,26 +6,29 @@
 {% endblock %}
 
 {% block css_links %}
-<link rel="stylesheet" href="{% static 'css/authorization/style_authorization.css' %}">
+<link rel="stylesheet" href="{% static 'css/posts/style_posts.css' %}">
 {% endblock %}
 
 {% block content %}
 
 <section class="posts-table">
     <ul>
+        {% for post in posts %}
         <li>
-            {% for post in posts %}.
-                <div class="top-section">
-                    <img src="{% static 'img/mainapp/user.png' %}" alt="{% static 'img/mainapp/notfound.png' %">
-                    <h4>User: {{ post.author }}</h4>
-                    <p>{{ post.created }}</p>
-                </div>
-                <div class="middle-section">
-                    <p>{{ post.text }}</p>
-                </div>
-                <div class="bottom-section"></div>
-            {% endfor %}
+            <div class="top-section">
+                <img src="{% static 'img/mainapp/user.png' %}" alt="{% static 'img/mainapp/notfound.png' %">
+                <h4>User: {{ post.author }}</h4>
+                <p>{{ post.created }}</p>
+            </div>
+            <div class="middle-section">
+                <p>{{ post.text }}</p>
+                {% if post.amount_of_likes > 0 %}
+                    <p>{{ post.amount_of_likes }}</p>
+                {% endif %}
+            </div>
+            <div class="bottom-section"></div>
         </li>
+        {% endfor %}
     </ul>
 </section>
 
