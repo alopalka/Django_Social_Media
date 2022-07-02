@@ -13,7 +13,6 @@
 
 <section class="posts-table">
     <ul>
-        {% for post in posts %}
         <li>
             <div class="top-section">
                 <img src="{% static 'img/mainapp/user.png' %}" alt="{% static 'img/mainapp/notfound.png' %">
@@ -31,14 +30,8 @@
                         <p>👍 {% if post.amount_of_likes > 0 %}{{ post.amount_of_likes }}{% endif %}</p>
                     </a>
                 </button>
-                <button class="btn-classic">
-                    <a href="{% url 'posts:details' pk=post.pk %}">
-                        <p>See details</p>
-                    </a>
-                </button>
             </div>
         </li>
-        {% endfor %}
     </ul>
 </section>
 

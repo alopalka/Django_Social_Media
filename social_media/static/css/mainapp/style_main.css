@@ -44,6 +44,10 @@ a:hover,button:hover{
     border-radius: 5px;
 }
 
+.btn-classic:hover{
+    background-color: #000033;
+}
+
 /* buttons end*/
 
 .global-container{

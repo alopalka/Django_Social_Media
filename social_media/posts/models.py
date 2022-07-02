@@ -20,7 +20,7 @@ class Comment(models.Model):
     post_parent=models.ForeignKey(Post,on_delete=models.CASCADE)
     author=models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE)
     comment=models.CharField(max_length=2000)
-    created_at=models.DateTimeField(auto_now_add=True)
+    likes=models.ManyToManyField(settings.AUTH_USER_MODEL,related_name="likes")
     likes=models.IntegerField()
 
     def __str__(self):

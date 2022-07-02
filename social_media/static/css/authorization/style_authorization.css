@@ -1,5 +1,5 @@
 .authorization-panel{
-    height: 100%;
+    min-height: 70vh;
     width: 80%;
     background: #fff;
     display: flex;
@@ -13,6 +13,7 @@
     flex-direction: column;
     align-items: center;
     justify-content:space-evenly;
+    min-height: 30vh;
     height: 50%;
     width: 40%;
     border: #ccc 1px solid;
