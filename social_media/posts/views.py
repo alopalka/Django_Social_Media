@@ -19,25 +19,38 @@ def posts_view(request,template="posts/posts_page.html"):
 
 
 @login_required
-def like_post(request,pk):
+def react_to_post(request,pk,in_post):
     
     exact_post=Post.objects.get(pk=pk)
-    exact_post.likes.add(request.user)
+
+    if request.user in exact_post.likes.all():
+        exact_post.likes.remove(request.user)
+    else:
+        exact_post.likes.add(request.user)
+
     exact_post.save()
 
+    if in_post:
+        redirect_to_page=redirect("/posts/details/1")
+    else:
+        redirect_to_page=redirect("/posts/")
 
-    return redirect("/")
+    return redirect_to_page
 
 
 @login_required
-def like_comment(request,pk):
+def react_to_comment(request,pk):
     
     exact_comment=Comment.objects.get(pk=pk)
-    exact_comment.likes.add(request.user)
+
+    if request.user in exact_comment.likes.all():
+        exact_comment.likes.remove(request.user)
+    else:
+        exact_comment.likes.add(request.user)
+
     exact_comment.save()
 
-
-    return redirect("/")
+    return redirect("/posts/details/{}".format(pk))
 
 @login_required
 def details_post(request,pk,template="posts/posts_details_page.html"):

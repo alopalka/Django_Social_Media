@@ -26,7 +26,7 @@
             </div>
             <div class="bottom-section">
                 <button class="btn-classic">
-                    <a href="{% url 'posts:like' pk=post.pk %}">
+                    <a href="{% url 'posts:reactpost' pk=post.pk in_post=1 %}">
                         <p>👍 {% if post.amount_of_likes > 0 %}{{ post.amount_of_likes }}{% endif %}</p>
                     </a>
                 </button>
@@ -47,7 +47,7 @@
                     </div>
                     <div class="lower">
                         <button class="btn-classic">
-                            <a href="{% url 'posts:like_comment' pk=comment.pk %}">
+                            <a href="{% url 'posts:reactcomment' pk=comment.pk %}">
                                 <p>👍 {% if comment.amount_of_likes > 0 %}{{ comment.amount_of_likes }}{% endif %}</p>
                             </a>
                         </button>
