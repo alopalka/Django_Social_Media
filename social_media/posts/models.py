@@ -18,7 +18,7 @@ class Comment(models.Model):
     post_parent=models.ForeignKey(Post,on_delete=models.CASCADE)
     author=models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE)
     comment=models.CharField(max_length=2000)
-    likes=models.ManyToManyField(settings.AUTH_USER_MODEL,related_name="comment_likes")
+    likes=models.ManyToManyField(settings.AUTH_USER_MODEL,related_name="comment_likes",default=False)
 
     def __str__(self):
         return "{} : {} : {}".format(self.post_parent,self.comment,self.author)

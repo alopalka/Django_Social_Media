@@ -56,6 +56,16 @@
                 {% endfor %}
             </ul>
         </li>
+        <li id="add-comment-section">
+            <div class="top-section">
+                <h4>Add comment: </h4>
+                <button class="btn-classic" form="add-comment" type="submit">Dodaj</button>    
+            </div>
+            <form method="POST" id="add-comment" enctype="multipart/form-data" action="{% url 'posts:commentcreate' pk=post.pk %}">
+                {% csrf_token %}
+                {{form.comment}}
+            </form>
+        </li>
     </ul>
 </section>
 
