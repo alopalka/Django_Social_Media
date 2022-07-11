@@ -32,6 +32,12 @@
     border: #ccc 1px solid;
 }
 
+#add-post-section{
+    height: 15vh;
+}
+
+
+
 
 .top-section{
     height: 20%;
@@ -134,7 +140,7 @@
     padding:3px;
 }
 
-#add-comment-section{
+.add-section{
     margin-top: 20px;
     min-height: 280px;
     width: 50%;
@@ -147,14 +153,24 @@
     border: #ccc 1px solid;
 }
 
-#add-comment-section form{
+.add-section form{
     height: 90%;
     width: 95%;
     margin:15px 0px;
 }
 
-#add-comment-section form textarea{
+.add-section form textarea{
     padding:5px;
     height: 100%;
     width: 100%;    
+}
+
+#add-post{
+    min-height: 150px;
+}
+
+#add-post form{
+    height: 80%;
+    width: 95%;
+    margin:15px 0px;
 }

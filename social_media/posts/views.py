@@ -4,16 +4,20 @@ from django.contrib.auth.decorators import login_required
 from posts.models import Post
 from posts.models import Comment
 from posts.forms import CommentForm
+from posts.forms import PostForm
+
 
 @login_required
 def posts_view(request,template="posts/posts_page.html"):
 
     posts=Post.objects.filter()
+    form=PostForm()
 
     for post in posts:
         post.amount_of_likes=len(post.likes.all())
 
     context={
+        'form':form,
         'posts':posts,
     }
 
@@ -67,7 +71,19 @@ def create_comment(request,pk):
             raw_form.author=request.user
             raw_form.save()
             return redirect("/posts/post/details/{}".format(pk))
-    
+
+
+@login_required
+def create_post(request):
+
+    if request.method=="POST":
+        form=PostForm(request.POST)
+        if form.is_valid():
+            raw_form=form.save(commit=False)
+            raw_form.author=request.user
+            raw_form.save()
+
+            return redirect("/")
 
 
 @login_required

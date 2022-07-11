@@ -13,6 +13,16 @@
 
 <section class="posts-table">
     <ul>
+        <li class="add-section" id="add-post">
+            <div class="top-section">
+                <h4>Add post: </h4>
+                <button class="btn-classic" form="add-comment" type="submit">Add</button>    
+            </div>
+            <form method="POST" id="add-comment" enctype="multipart/form-data" action="{% url 'posts:postcreate' %}">
+                {% csrf_token %}
+                {{ form.text }}
+            </form>
+        </li>
         {% for post in posts %}
         <li class="post">
             <div class="top-section">
