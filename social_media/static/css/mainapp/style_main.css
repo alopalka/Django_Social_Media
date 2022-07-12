@@ -44,6 +44,17 @@ a:hover,button:hover{
     border-radius: 5px;
 }
 
+.btn-delete{
+    margin: 5px;
+    padding: 10px;
+    background-color: #ff0000;
+    font-size: medium;
+    font-weight: 400;
+    color: #fff;
+    border:#ff0000 1px solid;
+    border-radius: 5px;
+}
+
 .btn-classic:hover{
     background-color: #000033;
 }

@@ -1,3 +1,4 @@
+import re
 from django.shortcuts import redirect, render
 from django.contrib.auth.decorators import login_required
 
@@ -106,3 +107,10 @@ def details_post(request,pk,template="posts/posts_details_page.html"):
 
     return render(request,template,context)
 
+@login_required
+def delete_post(request,pk):
+    post=Post.objects.get(pk=pk)
+    if post.author==request.user:
+        post.delete()
+
+    return redirect("/")
