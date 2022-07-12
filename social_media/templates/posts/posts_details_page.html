@@ -9,6 +9,10 @@
 <link rel="stylesheet" href="{% static 'css/posts/style_posts.css' %}">
 {% endblock %}
 
+{% block script %}
+<script type="text/javascript" src="{% static 'js/posts/post_details.js' %}"></script>
+{% endblock %}
+
 {% block content %}
 
 <section class="posts-table">
@@ -30,8 +34,28 @@
                         <p>👍 {% if post.amount_of_likes > 0 %}{{ post.amount_of_likes }}{% endif %}</p>
                     </a>
                 </button>
+                {% if user == post.author %}
+                    <button class="btn-delete">
+                        <a href="{% url 'posts:postdelete' pk=post.pk %}">
+                            <p>Delete post</p>
+                        </a>
+                    </button>
+                    <button class="btn-classic" id="edit-btn">
+                        <p>Edit post</p>
+                    </button>
+                {% endif %}
             </div>
         </li>
+        <li class="post" id="edit-section">
+            <form action="{% url 'posts:postupdate' pk=post.pk %}" method="post">
+                {% csrf_token %}
+                {{ update_form.text }}
+                <button class="btn-classic" type="submit">
+                    Save changes
+                </button>
+            </form>
+        </li>
+        {% if comment_exist is True %}
         <li id="comment-section">
             <div class="top-section">
                 <h4>Comments:</h4>
@@ -56,6 +80,7 @@
                 {% endfor %}
             </ul>
         </li>
+        {% endif %}
         <li class="add-section">
             <div class="top-section">
                 <h4>Add comment: </h4>

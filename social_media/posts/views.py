@@ -1,4 +1,3 @@
-import re
 from django.shortcuts import redirect, render
 from django.contrib.auth.decorators import login_required
 
@@ -94,12 +93,20 @@ def details_post(request,pk,template="posts/posts_details_page.html"):
     post.amount_of_likes=len(post.likes.all())
     comments=Comment.objects.filter(post_parent=post)
 
+    if comments:
+        comment_exist=True
+    else:
+        comment_exist=False
+
+    update_form=PostForm(instance=post)
     form=CommentForm()
 
     for comment in comments:
         comment.amount_of_likes=len(comment.likes.all())
 
     context={
+        'update_form':update_form,
+        'comment_exist':comment_exist,
         'form':form,
         'post':post,
         'comments':comments,
@@ -112,5 +119,20 @@ def delete_post(request,pk):
     post=Post.objects.get(pk=pk)
     if post.author==request.user:
         post.delete()
+
+    return redirect("/")
+
+@login_required
+def update_post(request,pk):
+    
+    found_post=Post.objects.filter(id=pk,author=request.user)
+
+    if request.method=="POST" and found_post:
+
+        form=PostForm(request.POST)
+        if form.is_valid():            
+            found_post.update(text=form.cleaned_data['text'])
+            return redirect("/posts/post/details/{}".format(pk))
+
 
     return redirect("/")

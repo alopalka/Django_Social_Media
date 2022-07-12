@@ -174,3 +174,21 @@
     width: 95%;
     margin:15px 0px;
 }
+
+#edit-section{
+    display: none;
+}
+
+#edit-section form{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-direction: column;
+}
+
+#edit-section textarea{
+    height: 75%;
+    width: 95%;
+}
