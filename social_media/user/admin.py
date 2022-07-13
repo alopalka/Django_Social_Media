@@ -1,3 +1,15 @@
 from django.contrib import admin
+from django.contrib.auth.admin import UserAdmin
+from user.models import SocialAccount
 
-# Register your models here.
+class AdminAccount(UserAdmin):
+    model=SocialAccount
+
+    list_display=("email","username","is_active")
+    search_fields=('email','username')
+    filter_horizontal=()
+    list_filter=()
+    readonly_fields=()
+
+
+admin.site.register(SocialAccount,AdminAccount)
