@@ -1,6 +1,8 @@
 from django.urls import path
-from mainapp import views
+from user import views
 
 app_name="user"
 
-urlpatterns=[]
+urlpatterns=[
+    path('<str:username>',views.profile_details,name="profiledetails"),
+]

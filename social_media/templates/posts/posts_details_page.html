@@ -19,7 +19,9 @@
     <ul>
         <li class="post">
             <div class="top-section">
-                <img src="{% static 'img/mainapp/user.png' %}" alt="{% static 'img/mainapp/notfound.png' %">
+                <a href="{% url 'user:profiledetails' username=post.author %}">
+                    <img src="{% static 'img/mainapp/user.png' %}" alt="{% static 'img/mainapp/notfound.png' %">
+                </a>
                 <div class="top-right-section">
                     <h4>{{ post.author }}</h4>
                     <p>{{ post.created }}</p>

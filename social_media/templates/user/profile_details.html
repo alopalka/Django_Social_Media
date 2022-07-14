@@ -1,0 +1,18 @@
+{% extends 'mainapp/main_template.html' %}
+{% load static %}
+
+{% block title %}
+    Social Media - {{ username }}
+{% endblock %}
+
+{% block content %}
+
+<section class="user-details">
+    <div class="background"></div>
+    <div class="main-contents">
+        <h3>{{ username }}</h3>
+    </div>
+    <div class="user-posts"></div>
+</section>
+
+{% endblock %}
