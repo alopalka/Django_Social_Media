@@ -1,0 +1,15 @@
+.background{
+    height: 20vh;
+    background: wheat;
+}
+
+.main-contents{
+    height: 10vh;
+    background: khaki;
+}
+
+
+.user-posts{
+    min-height: 20vh;
+    background-color: greenyellow;
+}

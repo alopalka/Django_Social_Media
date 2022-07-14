@@ -5,14 +5,22 @@
     Social Media - {{ username }}
 {% endblock %}
 
+{% block css_links %}
+<link rel="stylesheet" href="{% static 'css/user/style_user.css' %}">
+{% endblock %}
+
 {% block content %}
 
-<section class="user-details">
-    <div class="background"></div>
+<section class="inner-block">
+    <div class="background">
+        <img src="#" alt="">
+    </div>
     <div class="main-contents">
         <h3>{{ username }}</h3>
     </div>
-    <div class="user-posts"></div>
+    <div class="user-posts">
+        
+    </div>
 </section>
 
 {% endblock %}

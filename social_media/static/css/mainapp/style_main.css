@@ -63,8 +63,9 @@ a:hover,button:hover{
 
 .global-container{
     display: flex;
-    background: #e5e5e5;
-    min-height: 70vh;
+    min-height: 80vh;
+    width: 100%;
+    background: rgb(238, 238, 238);
     align-items: center;
     justify-content: center;
     overflow: scroll;
@@ -134,3 +135,9 @@ nav ul li a:hover{
 }
 
 /* navbar-end */
+
+.inner-block {
+    height: 100%;
+    width: 80%;
+    background: #fff;
+}

@@ -1,4 +1,4 @@
-from xml.etree.ElementInclude import default_loader
+from re import T
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser
 from django.contrib.auth.models import BaseUserManager
@@ -33,11 +33,10 @@ class UserManager(BaseUserManager):
         )
 
         user.is_staff = True
+        user.is_superuser = True
         user.admin = True
         user.save()
         return user
-
-# hook in the New Manager to our Model
 
 class SocialAccount(AbstractBaseUser,PermissionsMixin):
 
@@ -48,9 +47,13 @@ class SocialAccount(AbstractBaseUser,PermissionsMixin):
     admin=models.BooleanField(default=False)
     profile_picture=models.ImageField()
     background_picture=models.ImageField()
+    date_joined=models.DateTimeField(null=True,auto_now_add=True)
+    last_login=models.DateTimeField(null=True,auto_now_add=True)
 
     USERNAME_FIELD = 'username'
     REQUIRED_FIELDS =  ['email']
 
     objects = UserManager()
 
+    def __str__(self) -> str:
+        return self.username

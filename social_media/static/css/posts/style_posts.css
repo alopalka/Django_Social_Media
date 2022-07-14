@@ -1,12 +1,3 @@
-.posts-table {
-  height: 100%;
-  width: 80%;
-  display: flex;
-  align-items: center;
-  justify-content: space-evenly;
-  flex-direction: column;
-  background: #fff;
-}
 
 .posts-table ul {
   min-height: 90%;
