@@ -10,7 +10,7 @@ from posts.forms import PostForm
 @login_required
 def posts_view(request,template="posts/posts_page.html"):
 
-    posts=Post.objects.filter()
+    posts=Post.objects.filter().order_by('-creation_date')
     form=PostForm()
 
     for post in posts:
@@ -91,7 +91,7 @@ def details_post(request,pk,template="posts/posts_details_page.html"):
 
     post=Post.objects.get(pk=pk)
     post.amount_of_likes=len(post.likes.all())
-    comments=Comment.objects.filter(post_parent=post)
+    comments=Comment.objects.filter(post_parent=post).order_by('-creation_date')
 
     if comments:
         comment_exist=True
@@ -125,7 +125,7 @@ def delete_post(request,pk):
 @login_required
 def update_post(request,pk):
     
-    found_post=Post.objects.filter(id=pk,author=request.user)
+    found_post=Post.objects.filter(id=pk,author=request.user).order_by('-creation_date')
 
     if request.method=="POST" and found_post:
 

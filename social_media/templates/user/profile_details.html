@@ -7,6 +7,7 @@
 
 {% block css_links %}
 <link rel="stylesheet" href="{% static 'css/user/style_user.css' %}">
+<link rel="stylesheet" href="{% static 'css/posts/style_posts.css' %}">
 {% endblock %}
 
 {% block content %}
@@ -19,7 +20,44 @@
         <h3>{{ username }}</h3>
     </div>
     <div class="user-posts">
-        
+        <h4>User posts:</h4>
+        <ul>
+            {% for post in user_posts %}
+            <li class="post">
+                <div class="top-section">
+                    <a href="{% url 'user:profiledetails' username=post.author %}">
+                        <img src="{% static 'img/mainapp/user.png' %}" alt="{% static 'img/mainapp/notfound.png' %">
+                    </a>
+                    <div class="top-right-section">
+                        <h4>{{ post.author }}</h4>
+                        <p>{{ post.created }}</p>
+                    </div>
+                </div>
+                <div class="middle-section">
+                    <p>{{ post.text }}</p>
+                </div>
+                <div class="bottom-section">
+                    <button class="btn-classic">
+                        <a href="{% url 'posts:postreact' pk=post.pk in_post=0 %}">
+                            <p>👍 {% if post.amount_of_likes > 0 %}{{ post.amount_of_likes }}{% endif %}</p>
+                        </a>
+                    </button>
+                    {% if user == post.author %}
+                    <button class="btn-delete">
+                        <a href="{% url 'posts:postdelete' pk=post.pk %}">
+                            <p>Delete post</p>
+                        </a>
+                    </button>
+                    {% endif %}
+                    <button class="btn-classic">
+                        <a href="{% url 'posts:details' pk=post.pk %}">
+                            <p>See details</p>
+                        </a>
+                    </button>
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
     </div>
 </section>
 
