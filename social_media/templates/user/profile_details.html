@@ -13,9 +13,15 @@
 {% block content %}
 
 <section class="inner-block">
+    
     <div class="background">
-        <img src="#" alt="">
+        {% if user.background_picture %}
+            <img src="{{ user.background_picture.url }}" alt="">
+        {% else %}
+            <img src="#" alt="">
+        {% endif %}
     </div>
+
     <div class="main-contents">
         <h3>{{ username }}</h3>
     </div>

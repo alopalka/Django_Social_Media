@@ -10,6 +10,7 @@ def profile_details(request,username,template="user/profile_details.html"):
 
 
     context={
+        'user':user,
         'user_posts':user_posts,
         'username':username,
     }

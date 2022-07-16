@@ -45,8 +45,8 @@ class SocialAccount(AbstractBaseUser,PermissionsMixin):
     is_active=models.BooleanField(default=True)
     is_staff=models.BooleanField(default=False)
     admin=models.BooleanField(default=False)
-    profile_picture=models.ImageField()
-    background_picture=models.ImageField()
+    profile_picture=models.ImageField(upload_to="user/")
+    background_picture=models.ImageField(upload_to="user/")
     date_joined=models.DateTimeField(null=True,auto_now_add=True)
     last_login=models.DateTimeField(null=True,auto_now_add=True)
 
@@ -55,5 +55,5 @@ class SocialAccount(AbstractBaseUser,PermissionsMixin):
 
     objects = UserManager()
 
-    def __str__(self) -> str:
+    def __str__(self):
         return self.username
