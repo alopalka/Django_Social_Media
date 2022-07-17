@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     "posts.apps.PostsConfig",
     "user.apps.UserConfig",
     "authorization.apps.AuthorizationConfig",
+    "rest_framework",
 ]
 
 MIDDLEWARE = [
