@@ -35,9 +35,13 @@ def react_to_post(request,pk,in_post):
         exact_post.likes.add(request.user)
 
     exact_post.save()
+    
+    user=request.user
 
-    if in_post:
+    if in_post==1:
         redirect_to_page=redirect("/posts/post/details/{}".format(pk))
+    elif in_post==2:
+        redirect_to_page=redirect(f"/user/{user}")
     else:
         redirect_to_page=redirect("/posts/")
 

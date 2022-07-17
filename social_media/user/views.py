@@ -8,6 +8,8 @@ def profile_details(request,username,template="user/profile_details.html"):
 
     user_posts=Post.objects.filter(author=user)
 
+    for post in user_posts:
+        post.amount_of_likes=len(post.likes.all())
 
     context={
         'user':user,
