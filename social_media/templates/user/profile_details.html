@@ -16,17 +16,24 @@
     
     <div class="background">
         {% if user.background_picture %}
-            <img src="{{ user.background_picture.url }}" alt="">
+            <img id="img-background" src="{{ user.background_picture.url }}" alt="">
         {% else %}
-            <img src="#" alt="">
+            <img id="img-background" src="{% static '/img/mainapp/notfound.png' %}" alt="">
         {% endif %}
     </div>
 
     <div class="main-contents">
-        <h3>{{ username }}</h3>
+        {% if user.profile_picture %}
+            <img class="img-profile" src="{{ user.profile_picture.url }}" alt="{% static 'img/mainapp/notfound.png' %}">
+        {% else %}
+            <img class="img-profile" src="{% static '/img/mainapp/user.png' %}" alt="{% static '/img/mainapp/notfound.png' %}">
+        {% endif %}
+        <div>
+            <h3>{{ username }}</h3>
+            <p>{{ user.email }}</p>
+        </div>
     </div>
     <div class="user-posts">
-        <h4>User posts:</h4>
         <ul>
             {% for post in user_posts %}
             <li class="post">

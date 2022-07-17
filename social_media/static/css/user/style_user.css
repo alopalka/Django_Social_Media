@@ -1,15 +1,38 @@
 .background{
-    height: 20vh;
-    background: wheat;
+    height: 25vh;
+    overflow: hidden;
 }
+
+#img-background{
+    height: 100%;
+    width: 100%;
+    object-fit:cover;
+}
+
 
 .main-contents{
-    height: 10vh;
-    background: khaki;
+    height: 18vh;
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    flex-direction: row;
+    background: #fbfbfb;
 }
-
 
 .user-posts{
     min-height: 20vh;
-    background-color: greenyellow;
+    width: 100%;
+}
+
+.user-posts ul{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.post{
+    margin-bottom: 25px;
 }

@@ -141,3 +141,13 @@ nav ul li a:hover{
     width: 80%;
     background: #fff;
 }
+
+.img-profile{
+    height: 150px;
+    width: 150px;
+    border-radius: 150px;
+    object-fit: cover;
+    background: #f3f3f3;
+    padding:1px;
+    margin: 0px 35px;
+}

@@ -1,5 +1,6 @@
 {% extends 'mainapp/main_template.html' %}
 {% load static %}
+{% load filters_main %}
 
 {% block title %}
     Social Media - Posts
@@ -27,7 +28,7 @@
         <li class="post">
             <div class="top-section">
                 <a href="{% url 'user:profiledetails' username=post.author %}">
-                    <img src="{% static 'img/mainapp/user.png' %}" alt="{% static 'img/mainapp/notfound.png' %">
+                    <img class="img-profile" src="{{ post.author|photo_filter }}" alt="{% static 'img/mainapp/notfound.png' %}" loading="lazy">
                 </a>
                 <div class="top-right-section">
                     <h4>{{ post.author }}</h4>
