@@ -1,6 +1,8 @@
 from django.urls import path
-from mainapp import views
+from chat import views
 
 app_name="chat"
 
-urlpatterns=[]
+urlpatterns=[
+    path('',views.list_rooms,name="rooms"),
+]

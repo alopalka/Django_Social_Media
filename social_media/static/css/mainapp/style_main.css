@@ -117,6 +117,7 @@ nav ul{
 
 nav ul li{
     height: 95%;
+    text-align: center;
     width: 120px;
     border-radius: 5px;
 }

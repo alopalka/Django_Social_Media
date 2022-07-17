@@ -1,0 +1,31 @@
+{% extends 'mainapp/main_template.html' %}
+{% load static %}
+
+{% block title %}
+    Social Media - Chat
+{% endblock %}
+
+{% block css_links %}
+<link rel="stylesheet" href="{% static 'css/chat/style_chat.css' %}">
+{% endblock %}
+
+{% block script %}
+<script type="text/javascript" src="{% static 'js/chat/chat_logic.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+
+<section id="chat-block" class="inner-block posts-table">
+    <div id="chat-history">
+        <ul>
+            <a href="#">
+                <li></li>
+            </a>
+        </ul>
+    </div>
+    <div id="chat-details">
+
+    </div>
+</section>
+
+{% endblock %}

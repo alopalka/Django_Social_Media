@@ -1,0 +1,16 @@
+#chat-block{
+    height: 75vh;
+    display: flex;
+    flex-direction: row;
+}
+
+#chat-history{
+    background: khaki;
+    min-height: 100%;
+    width: 30%;
+}
+
+#chat-details{
+    height: 100%;
+    width: 50%;
+}
