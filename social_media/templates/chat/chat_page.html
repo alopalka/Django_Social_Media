@@ -18,13 +18,15 @@
 <section id="chat-block" class="inner-block posts-table">
     <div id="chat-history">
         <ul>
-            <a href="#">
-                <li></li>
-            </a>
+            {% for room in rooms %}
+            <li class="room" value="{{ room.slug }}">
+                <p>{{ room.user1 }} - {{ room.user2 }}</p>
+            </li>
+            {% endfor %}
         </ul>
     </div>
     <div id="chat-details">
-
+        
     </div>
 </section>
 
