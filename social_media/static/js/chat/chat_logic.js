@@ -19,12 +19,11 @@ const chats = document.querySelectorAll('.room')
 chats.forEach(chat => {
     chat.addEventListener('click',function handleClick(event){
         buildDisplayChat(chat.getAttribute('value'))
-        console.log('elo',event)
     })
 })
 
 function buildDisplayChat(slug){
-    var chatDetails=document.getElementById('chat-details')
+    var chatBox=document.getElementById('chat-box')
     var url=document.location.origin+'/chat/chat-history/'+slug
 
     fetch(url)
@@ -33,6 +32,23 @@ function buildDisplayChat(slug){
         var list=data
         for(var i in list){
             console.log(list[i])
+
+            var author=list[i].user
+            var timeStamp=list[i].creation_date
+            var textContent=list[i].content
+
+            var chatBoxItem=`
+            <li>
+                <div class="left-info">
+                    <h4>${author}</h4>
+                    <p>${timeStamp}</p>
+                </div>
+                <p class="txt-content">${textContent}</p>
+            </li>
+            `
+            
+            chatBox.innerHTML+=chatBoxItem
+
         }
     })
 }

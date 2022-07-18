@@ -44,5 +44,43 @@
 
 #chat-details{
     height: 100%;
-    width: 50%;
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: top;
+}
+
+#chat-box{
+    width: 90%;
+    height: 100%;
+}
+
+#chat-box li{
+    margin-top: 10px;
+    width: 100%;
+    height: 10vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    border: #ccc 1px solid;
+    border-radius: 4px;
+}
+
+.left-info{
+    height: 90%;
+    width: 20%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    border-right: #f0f0f0 1px solid;
+}
+
+.txt-content{
+    height: 90%;
+    width: 70%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

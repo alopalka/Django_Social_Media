@@ -20,13 +20,19 @@
         <ul>
             {% for room in rooms %}
             <li class="room" value="{{ room.slug }}">
-                <p>{{ room.user1 }} - {{ room.user2 }}</p>
+                {% if room.user1 == user.username %}
+                <p>{{ room.user2 }}</p>
+                {% else %}
+                <p>{{ room.user2 }}</p>
+                {% endif %}
             </li>
             {% endfor %}
         </ul>
     </div>
     <div id="chat-details">
-        
+        <ul id="chat-box">
+            
+        </ul>
     </div>
 </section>
 
