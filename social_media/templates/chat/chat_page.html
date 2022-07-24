@@ -23,7 +23,7 @@
                 {% if room.user1 == user.username %}
                 <p>{{ room.user2 }}</p>
                 {% else %}
-                <p>{{ room.user2 }}</p>
+                <p>{{ room.user1 }}</p>
                 {% endif %}
             </li>
             {% endfor %}
@@ -33,6 +33,12 @@
         <ul id="chat-box">
             
         </ul>
+        <form id="create-message">
+            <input id="room-id" type="hidden" value="">
+            <input id="text-author" type="hidden" value="">
+            <input id="text-content" type="text">
+            <input type="submit">
+        </form>
     </div>
 </section>
 
