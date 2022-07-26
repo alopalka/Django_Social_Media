@@ -33,19 +33,22 @@ function buildDisplayChat(slug) {
             for (var i in list) {
                 console.log(list[i])
 
+                var roomId = list[i].room
                 var author = list[i].user
                 var timeStamp = list[i].creation_date
                 var textContent = list[i].content
 
                 var chatBoxItem = `
-            <li>
-                <div class="left-info">
-                    <h4>${author}</h4>
-                    <p>${timeStamp}</p>
-                </div>
-                <p class="txt-content">${textContent}</p>
-            </li>
-            `
+                <li>
+                    <div class="left-info">
+                        <h4>${author}</h4>
+                        <p>${timeStamp}</p>
+                    </div>
+                    <p class="txt-content">${textContent}</p>
+                </li>
+                `
+
+                document.getElementById('room-id').value=roomId
 
                 chatBox.innerHTML += chatBoxItem
 
@@ -57,17 +60,24 @@ var form = document.getElementById('chat-details')
 form.addEventListener('submit', function (k) {
     k.preventDefault()
 
-    var url = document.location.origin + "chat/message-create/"
+    var url = document.location.origin + "/chat/message-create/"
 
     var message = document.getElementById('text-content').value
+    var roomId = document.getElementById('room-id').value
+    var textAuthor = document.getElementById('text-author').value
 
-    fetch(url,{
-        method:'POST',
-        headers:{
-            'Content-type':'application/json',
-            'X-CSRFToken':csrftoken,
+    fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-type': 'application/json',
+            'X-CSRFToken': csrftoken,
         },
-        body:JSON.stringify({})
+        body: JSON.stringify({
+            'room': roomId,
+            'user': textAuthor,
+            'content': message
+        })
+    }).then(function (response) {
+        document.getElementById('text-author').reset()
     })
-
 })

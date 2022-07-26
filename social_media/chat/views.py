@@ -23,6 +23,7 @@ def list_rooms(request, template="chat/chat_page.html"):
 
     context = {
         "rooms": rooms,
+        "text_author": request.user.id,
     }
 
     return render(request, template, context)
@@ -40,6 +41,8 @@ def get_chat_history(request, slug):
 @api_view(['POST'])
 def create_message(request):
     serializer = CreateMessageSerializer(data=request.data)
+
+    breakpoint()
 
     if serializer.is_valid():
         serializer.save()

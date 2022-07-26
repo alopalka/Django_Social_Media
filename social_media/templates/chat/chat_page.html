@@ -33,9 +33,9 @@
         <ul id="chat-box">
             
         </ul>
-        <form id="create-message">
+        <form id="create-message" method="POST" action="{% url 'chat:create-message' %}">
             <input id="room-id" type="hidden" value="">
-            <input id="text-author" type="hidden" value="">
+            <input id="text-author" type="hidden" value="{{ text_author }}">
             <input id="text-content" type="text">
             <input type="submit">
         </form>
