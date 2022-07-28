@@ -18,9 +18,41 @@ const chats = document.querySelectorAll('.room')
 
 chats.forEach(chat => {
     chat.addEventListener('click', function handleClick(event) {
-        buildDisplayChat(chat.getAttribute('value'))
+        newMessageSpotter(chat.getAttribute('value'))
     })
 })
+
+const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
+
+
+async function newMessageSpotter(slug){
+    
+    var lastestMessageTimeStamp=new Date("Jan 15 2000 02:39:53 GMT-0800")
+
+    while(true){
+        var url = document.location.origin + '/chat/chat-history/' + slug
+
+        await delay(3000);
+
+        fetch(url)
+        .then((resp) => resp.json())
+        .then(function (data) {
+            var list = data
+            var timeStamp=list[list.length - 1].creation_date
+            console.log(list)
+            var timeStamp=new Date(timeStamp)
+
+            console.log(lastestMessageTimeStamp)
+            console.log(timeStamp)
+
+            if(timeStamp>lastestMessageTimeStamp){
+                lastestMessageTimeStamp=timeStamp
+                buildDisplayChat(slug)
+            }
+        })
+    }
+
+}
 
 function buildDisplayChat(slug) {
     var chatBox = document.getElementById('chat-box')
@@ -30,7 +62,11 @@ function buildDisplayChat(slug) {
         .then((resp) => resp.json())
         .then(function (data) {
             var list = data
+
+            chatBox.innerHTML = " "
+
             for (var i in list) {
+
                 console.log(list[i])
 
                 var roomId = list[i].room
@@ -48,12 +84,15 @@ function buildDisplayChat(slug) {
                 </li>
                 `
 
-                document.getElementById('room-id').value=roomId
+                document.getElementById('room-id').value = roomId
+
 
                 chatBox.innerHTML += chatBoxItem
 
             }
         })
+
+    
 }
 
 var form = document.getElementById('chat-details')

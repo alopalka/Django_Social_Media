@@ -42,8 +42,6 @@ def get_chat_history(request, slug):
 def create_message(request):
     serializer = CreateMessageSerializer(data=request.data)
 
-    breakpoint()
-
     if serializer.is_valid():
         serializer.save()
 
