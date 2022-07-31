@@ -84,6 +84,7 @@ form.addEventListener('submit', function (k) {
             'user': textAuthor,
             'content': message
         })
-    })
-    buildDisplayChat(roomSlug)
+    }).then(
+        buildDisplayChat(roomSlug)
+    )
 })
