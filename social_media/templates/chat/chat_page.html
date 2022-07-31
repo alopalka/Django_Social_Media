@@ -20,28 +20,36 @@
         <ul>
             {% for room in rooms %}
             <li class="room" value="{{ room.slug }}">
-                {% if room.user1 == user.username %}
-                <p>{{ room.user2 }}</p>
+                {% if room.user1.username == user.username %}
+                <p>{{ room.user2.username }}</p> 
                 {% else %}
-                <p>{{ room.user1 }}</p>
+                <p>{{ room.user1.username }}</p> 
                 {% endif %}
             </li>
             {% endfor %}
         </ul>
-        <form action="{% url 'chat:create-chatroom' %}" method="post">
-            
+        {% if users.count > 0 %}
+        <form id="create-chat" method="post">
+            <select id="user-selected" name="user">
+                {% for user in users %}
+                    <option value="{{ user.username }}">{{ user.username }}</option>                
+                {% endfor %}
+                <input id="author" type="hidden" value="{{user.username}}">
+            </select>
+            <button type="submit" class="btn-classic">Create room</button>
         </form>
+        {% endif %}
     </div>
     <div id="chat-details">
         <ul id="chat-box">
             
         </ul>
-        <form id="create-message" method="POST" action="{% url 'chat:create-message' %}">
+        <form id="create-message" method="POST">
             <input id="room-id" type="hidden" value="">
             <input id="room-slug" type="hidden" value="">
             <input id="text-author" type="hidden" value="{{ text_author }}">
             <input id="text-content" type="text">
-            <input class="btn-classic" type="submit">
+            <button class="btn-classic" type="submit">Send message</button>
         </form>
     </div>
 </section>

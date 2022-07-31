@@ -34,6 +34,11 @@ function buildDisplayChat(slug) {
 
             chatBox.innerHTML = " "
 
+            var chatBoxTop=`
+                <h3>Chat Box:</h3>
+            `
+            chatBox.innerHTML+=chatBoxTop
+
             for (var i in list) {
 
                 var roomId = list[i].room
@@ -51,8 +56,8 @@ function buildDisplayChat(slug) {
                 </li>
                 `
 
-                document.getElementById('room-id').value = roomId
-                document.getElementById('room-slug').value = slug
+                document.getElementById('room-id').setAttribute('value',roomId)
+                document.getElementById('room-slug').setAttribute('value',slug)
 
                 chatBox.innerHTML += chatBoxItem
 
@@ -71,7 +76,6 @@ form.addEventListener('submit', function (k) {
     var message = document.getElementById('text-content').value
     var roomId = document.getElementById('room-id').value
     var textAuthor = document.getElementById('text-author').value
-    var roomSlug = document.getElementById('room-slug').value
 
     fetch(url, {
         method: 'POST',
@@ -84,7 +88,31 @@ form.addEventListener('submit', function (k) {
             'user': textAuthor,
             'content': message
         })
-    }).then(
-        buildDisplayChat(roomSlug)
-    )
+    })
+})
+
+
+var createChatroom = document.getElementById('create-chat')
+
+createChatroom.addEventListener('submit', function (k) {
+    k.preventDefault()
+
+    var url = document.location.origin + "/chat/chat-create/"
+
+    var optionSelected = document.getElementById('user-selected')
+    var userSelected = optionSelected.value
+    var userChatCreator = document.getElementById('author').value
+
+    fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-type': 'application/json',
+            'X-CSRFToken': csrftoken,
+        },
+        body: JSON.stringify({
+            'user_creating': userChatCreator,
+            'user_added': userSelected
+        })
+    })
+
 })
