@@ -15,18 +15,11 @@
 
 {% block content %}
 
+{{ request.user.username|json_script:"user_username" }}
 <section id="chat-block" class="inner-block posts-table">
     <div id="chat-history">
-        <ul>
-            {% for room in rooms %}
-            <li class="room" value="{{ room.slug }}">
-                {% if room.user1.username == user.username %}
-                <p>{{ room.user2.username }}</p> 
-                {% else %}
-                <p>{{ room.user1.username }}</p> 
-                {% endif %}
-            </li>
-            {% endfor %}
+        <ul id="chat-history-ul">
+            
         </ul>
         {% if users.count > 0 %}
         <form id="create-chat" method="post">

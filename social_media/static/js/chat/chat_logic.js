@@ -14,58 +14,50 @@ function getCookie(name) {
 }
 var csrftoken = getCookie('csrftoken');
 
-const chats = document.querySelectorAll('.room')
+function buildChatRooms() {
 
-chats.forEach(chat => {
-    chat.addEventListener('click', function handleClick(event) {
-        buildDisplayChat(chat.getAttribute('value'))
-    })
-})
+    var chatHistory = document.getElementById('chat-history-ul')
+    var url = document.location.origin + '/chat/chat-get/'
+    const userUsername = JSON.parse(document.getElementById('user_username').textContent);
 
-
-function buildDisplayChat(slug) {
-    var chatBox = document.getElementById('chat-box')
-    var url = document.location.origin + '/chat/chat-history/' + slug
-
-    fetch(url)
-        .then((resp) => resp.json())
+    fetch(url).then((resp) => resp.json())
         .then(function (data) {
             var list = data
 
-            chatBox.innerHTML = " "
-
-            var chatBoxTop=`
-                <h3>Chat Box:</h3>
-            `
-            chatBox.innerHTML+=chatBoxTop
+            chatHistory.innerHTML = ""
 
             for (var i in list) {
 
-                var roomId = list[i].room
-                var author = list[i].user
-                var timeStamp = list[i].creation_date
-                var textContent = list[i].content
+                console.log(list[i])
 
-                var chatBoxItem = `
-                <li>
-                    <div class="left-info">
-                        <h4>${author}</h4>
-                        <p>${timeStamp}</p>
-                    </div>
-                    <p class="txt-content">${textContent}</p>
+                var roomSlug = list[i].slug
+                var roomUser1 = list[i].user1
+                var roomUser2 = list[i].user2
+
+                if (roomUser1 == userUsername) {
+                    roomUser = roomUser2
+                } else {
+                    roomUser = roomUser1
+                }
+
+                var chatRoomItem = `
+                <li class="room" value="${roomSlug}">
+                    <p>${roomUser}</p>
                 </li>
                 `
 
-                document.getElementById('room-id').setAttribute('value',roomId)
-                document.getElementById('room-slug').setAttribute('value',slug)
-
-                chatBox.innerHTML += chatBoxItem
+                chatHistory.innerHTML += chatRoomItem
 
             }
+
+            chatBoxAddEvents()
+
         })
 
-
 }
+
+buildChatRooms()
+
 
 var form = document.getElementById('chat-details')
 form.addEventListener('submit', function (k) {
@@ -92,27 +84,105 @@ form.addEventListener('submit', function (k) {
 })
 
 
+
 var createChatroom = document.getElementById('create-chat')
 
-createChatroom.addEventListener('submit', function (k) {
-    k.preventDefault()
+if (typeof (createChatroom) != 'undefined' && createChatroom != null) {
+    createChatroom.addEventListener('submit', function (k) {
+        k.preventDefault()
 
-    var url = document.location.origin + "/chat/chat-create/"
+        var url = document.location.origin + "/chat/chat-create/"
 
-    var optionSelected = document.getElementById('user-selected')
-    var userSelected = optionSelected.value
-    var userChatCreator = document.getElementById('author').value
+        var optionSelected = document.getElementById('user-selected')
+        var userSelected = optionSelected.value
+        var userChatCreator = document.getElementById('author').value
 
-    fetch(url, {
-        method: 'POST',
-        headers: {
-            'Content-type': 'application/json',
-            'X-CSRFToken': csrftoken,
-        },
-        body: JSON.stringify({
-            'user_creating': userChatCreator,
-            'user_added': userSelected
+        fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-type': 'application/json',
+                'X-CSRFToken': csrftoken,
+            },
+            body: JSON.stringify({
+                'user_creating': userChatCreator,
+                'user_added': userSelected
+            })
+        })
+
+    })
+}
+
+function chatBoxAddEvents() {
+    const chats = document.querySelectorAll('.room')
+
+    console.log(chats)
+
+    chats.forEach(chat => {
+        chat.addEventListener('click', function handleClick(event) {
+            buildDisplayChat(chat.getAttribute('value'))
         })
     })
+}
 
-})
+
+function buildDisplayChat(slug) {
+    var chatBox = document.getElementById('chat-box')
+    var url = document.location.origin + '/chat/chat-history/' + slug
+
+    console.log(url)
+
+    fetch(url)
+        .then((resp) => resp.json())
+        .then(function (data) {
+            var list = data
+
+            chatBox.innerHTML = " "
+
+            var chatBoxTop = `
+                <h3>Chat Box:</h3>
+            `
+            chatBox.innerHTML += chatBoxTop
+
+            if(typeof (list.length) != 'undefined'){
+
+            for (var i in list) {
+
+                var roomId = list[i].room
+                var author = list[i].user
+                var timeStamp = list[i].creation_date
+                var textContent = list[i].content
+
+                var chatBoxItem = `
+                <li>
+                    <div class="left-info">
+                        <h4>${author}</h4>
+                        <p>${timeStamp}</p>
+                    </div>
+                    <p class="txt-content">${textContent}</p>
+                </li>
+                `
+
+                document.getElementById('room-id').value=roomId
+                document.getElementById('room-slug').value=slug
+
+                chatBox.innerHTML += chatBoxItem
+
+            }
+
+            }else{
+                var chatBoxItem = `
+                <li>
+                    <div class="left-info">
+                        <h4>Social Media</h4>
+                        <p>00:00</p>
+                    </div>
+                    <p class="txt-content">${list.content}</p>
+                </li>
+                `
+                chatBox.innerHTML += chatBoxItem
+            }
+    
+        })
+
+
+}

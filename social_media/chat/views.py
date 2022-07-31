@@ -1,8 +1,10 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
+from yaml import serialize
 
 from chat.models import ChatRoom
 from chat.models import Message
+from chat.serializer import ChatSerializer
 from chat.serializer import CreateChatSerializer
 from chat.serializer import MessageSerializer
 from chat.serializer import CreateMessageSerializer
@@ -33,11 +35,24 @@ def list_rooms(request, template="chat/chat_page.html"):
 
     context = {
         "users": users,
-        "rooms": rooms1,
         "text_author": request.user.id,
     }
 
     return render(request, template, context)
+
+
+@api_view(['GET'])
+def get_user_rooms(request):
+
+    rooms1 = ChatRoom.objects.filter(user1=request.user)
+    rooms2 = ChatRoom.objects.filter(user2=request.user)
+
+    rooms1.union(rooms2)
+
+    serializer = ChatSerializer(rooms1,many=True)
+
+    return Response(serializer.data, status=status.HTTP_201_CREATED)
+
 
 
 @api_view(['POST'])
@@ -66,7 +81,14 @@ def create_chatroom(request):
 def get_chat_history(request, slug):
     chat = ChatRoom.objects.get(slug=slug)
     messages = Message.objects.filter(room=chat)
-    serializer = MessageSerializer(messages, many=True)
+
+    if messages.count() == 0:
+        messages = Message(room=chat,user=chat.user1,content="Send first message to start chatting")
+
+        serializer = MessageSerializer(messages, many=False)
+    else:
+        serializer = MessageSerializer(messages, many=True)
+    
 
     return Response(serializer.data, status=status.HTTP_201_CREATED)
 
