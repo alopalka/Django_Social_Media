@@ -18,11 +18,13 @@
 {{ request.user.username|json_script:"user_username" }}
 <section id="chat-block" class="inner-block posts-table">
     <div id="chat-history">
+        <h4>Chat history:</h4>
         <ul id="chat-history-ul">
             
         </ul>
         {% if users.count > 0 %}
         <form id="create-chat" method="post">
+            {% csrf_token %}
             <select id="user-selected" name="user">
                 {% for user in users %}
                     <option value="{{ user.username }}">{{ user.username }}</option>                

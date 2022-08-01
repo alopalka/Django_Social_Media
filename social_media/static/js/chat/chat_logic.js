@@ -28,7 +28,6 @@ function buildChatRooms() {
 
             for (var i in list) {
 
-                console.log(list[i])
 
                 var roomSlug = list[i].slug
                 var roomUser1 = list[i].user1
@@ -81,6 +80,10 @@ form.addEventListener('submit', function (k) {
             'content': message
         })
     })
+
+    var roomSlug = document.getElementById('room-slug').value
+
+    buildDisplayChat(roomSlug)
 })
 
 
@@ -108,14 +111,13 @@ if (typeof (createChatroom) != 'undefined' && createChatroom != null) {
                 'user_added': userSelected
             })
         })
-
+        
+        buildChatRooms()
     })
 }
 
 function chatBoxAddEvents() {
     const chats = document.querySelectorAll('.room')
-
-    console.log(chats)
 
     chats.forEach(chat => {
         chat.addEventListener('click', function handleClick(event) {
@@ -129,7 +131,6 @@ function buildDisplayChat(slug) {
     var chatBox = document.getElementById('chat-box')
     var url = document.location.origin + '/chat/chat-history/' + slug
 
-    console.log(url)
 
     fetch(url)
         .then((resp) => resp.json())
@@ -161,15 +162,12 @@ function buildDisplayChat(slug) {
                     <p class="txt-content">${textContent}</p>
                 </li>
                 `
-
-                document.getElementById('room-id').value=roomId
-                document.getElementById('room-slug').value=slug
-
                 chatBox.innerHTML += chatBoxItem
-
-            }
+                }
+                document.getElementById('room-id').value=roomId
 
             }else{
+
                 var chatBoxItem = `
                 <li>
                     <div class="left-info">
@@ -180,7 +178,11 @@ function buildDisplayChat(slug) {
                 </li>
                 `
                 chatBox.innerHTML += chatBoxItem
+
+                document.getElementById('room-id').value=list.room
             }
+
+            document.getElementById('room-slug').value=slug
     
         })
 
