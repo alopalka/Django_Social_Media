@@ -13,18 +13,20 @@
 {% block content %}
 
 <section class="authorization-panel">
-    <h3>Login to your account</h3>
-    <form method="POST" action="{% url 'authorization:login' %}">
+    <h3>Register to social media</h3>
+    <form method="POST" action="{% url 'authorization:register' %}">
         {% csrf_token %}
-        <p>Login:</p>
+        <p>Email:</p>
+        {{ form.email }}
+        <p>Username:</p>
         {{ form.username }}
         <p>Password:</p>
-        {{ form.password }}
-        <button class="btn-classic" type="submit">Log in</button>
+        {{ form.password1 }}
+        <p>Confirm password:</p>
+        {{ form.password2 }}
+        <button class="btn-classic" type="submit">Register</button>
     </form>
-    {{ form.error }}
-    <h4>Don't have account? No problem</h4>
-    <a href="{% url 'authorization:register' %}"><button class="btn-classic">Register Now !</button></a>
+        {{ form.errors }}
 
 </section>
 
