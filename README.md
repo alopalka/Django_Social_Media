@@ -43,5 +43,7 @@ This project is a simple social media inspired by Facebook. Created in Python fr
 
 - You chat with users you have to create chat room
 - When chat room is created you can send message to user and it will only be visible for them.
+- Chat uses Django Rest Framework. To enable more dynamic loading and user interactions.
+- It is not realtime chating. My Javascript skills are not good yet.
 
 ![scr1!](screenshots/scr1.png)
