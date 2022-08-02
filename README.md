@@ -37,3 +37,5 @@ This project is a simple social media inspired by Facebook. Created in Python fr
 - You chat with users you have to create chat room
 - When chat room is created you can send message to user and it will only be visible for them.
 
+![scr1!](screenshots/scr1.png)
+![scr2!](screenshots/scr2.png)
