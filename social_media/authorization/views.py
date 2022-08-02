@@ -12,8 +12,6 @@ def register_view(request,template="authorization/register_page.html"):
 
         form=RegisterForm(request.POST)
 
-        print(form.errors)
-
         if form.is_valid():
             form.save()
 
@@ -21,8 +19,9 @@ def register_view(request,template="authorization/register_page.html"):
             password=form.cleaned_data['password1']
             email=form.cleaned_data['email']
             user=authenticate(username=username,password=password,email=email,request=request)
+            login(request,user)
 
-            return redirect("authorization:login")
+            return redirect("mainapp:main")
     
     else:
         form=RegisterForm()
