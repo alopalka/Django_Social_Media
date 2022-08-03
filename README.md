@@ -21,15 +21,15 @@ This project is a simple social media inspired by Facebook. Created in Python fr
 - By going to details you can read comments and add yours if you will
 - Also you can give reactions to comments
 
-![scr21!](screenshots/scr2.png)
-![scr31!](screenshots/scr3.png)
+![scr21!](https://github.com/alopalka/Django_Social_Media/tree/main/screenshots/scr2.png)
+![scr31!](https://github.com/alopalka/Django_Social_Media/tree/main/screenshots/scr3.png)
 
 #### Profile details 
 
 - When you click user profile picture in main page or in post details. You will be redirected to user's profile page
 - On that page you can see posts created by this user and user email
 
-![scr41!](screenshots/scr4.png)
+![scr41!](https://github.com/alopalka/Django_Social_Media/tree/main/screenshots/scr4.png)
 
 #### User authentication
 
@@ -37,7 +37,7 @@ This project is a simple social media inspired by Facebook. Created in Python fr
 - Page will force you to login
 - If you don't have an account you can register by clicking in "Register now!"
 
-![scr51!](screenshots/scr5.png)
+![scr51!](https://github.com/alopalka/Django_Social_Media/tree/main/screenshots/scr5.png)
 
 #### Chat logic
 
@@ -46,4 +46,4 @@ This project is a simple social media inspired by Facebook. Created in Python fr
 - Chat uses Django Rest Framework. To enable more dynamic loading and user interactions.
 - It is not realtime chating. My Javascript skills are not good yet.
 
-![scr11!](screenshots/scr1.png)
+![scr11!](https://github.com/alopalka/Django_Social_Media/tree/main/screenshots/scr1.png)
