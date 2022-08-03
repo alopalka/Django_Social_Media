@@ -23,7 +23,7 @@ def list_rooms(request, template="chat/chat_page.html"):
     rooms1 = ChatRoom.objects.filter(user1=request.user)
     rooms2 = ChatRoom.objects.filter(user2=request.user)
 
-    rooms = list(chain(rooms1,rooms2))
+    rooms = list(chain(rooms1, rooms2))
 
     rooms_users = []
 
@@ -49,7 +49,7 @@ def get_user_rooms(request):
     rooms1 = ChatRoom.objects.filter(user1=request.user)
     rooms2 = ChatRoom.objects.filter(user2=request.user)
 
-    rooms = list(chain(rooms1,rooms2))
+    rooms = list(chain(rooms1, rooms2))
 
     serializer = ChatSerializer(rooms, many=True)
 
@@ -61,8 +61,6 @@ def create_chatroom(request):
     serializer = CreateChatSerializer(data=request.data)
 
     if serializer.is_valid():
-
-        
 
         user_creating = SocialAccount.objects.get(
             username=serializer.data['user_creating'])
@@ -76,7 +74,6 @@ def create_chatroom(request):
 
         if exact_same_chat_rooms1.count() > 0 or exact_same_chat_rooms2.count() > 0:
             return Response(serializer.data, status=status.HTTP_400_BAD_REQUEST)
-
 
         random_int = random.randint(1000, 1000000)
         room_name = f"room{random_int}"

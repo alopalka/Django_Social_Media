@@ -8,26 +8,26 @@ from posts.forms import PostForm
 
 
 @login_required
-def posts_view(request,template="posts/posts_page.html"):
+def posts_view(request, template="posts/posts_page.html"):
 
-    posts=Post.objects.filter().order_by('-creation_date')
-    form=PostForm()
+    posts = Post.objects.filter().order_by('-creation_date')
+    form = PostForm()
 
     for post in posts:
-        post.amount_of_likes=len(post.likes.all())
+        post.amount_of_likes = len(post.likes.all())
 
-    context={
-        'form':form,
-        'posts':posts,
+    context = {
+        'form': form,
+        'posts': posts,
     }
 
-    return render(request,template,context)
+    return render(request, template, context)
 
 
 @login_required
-def react_to_post(request,pk,in_post):
-    
-    exact_post=Post.objects.get(pk=pk)
+def react_to_post(request, pk, in_post):
+
+    exact_post = Post.objects.get(pk=pk)
 
     if request.user in exact_post.likes.all():
         exact_post.likes.remove(request.user)
@@ -35,23 +35,23 @@ def react_to_post(request,pk,in_post):
         exact_post.likes.add(request.user)
 
     exact_post.save()
-    
-    user=request.user
 
-    if in_post==1:
-        redirect_to_page=redirect("/posts/post/details/{}".format(pk))
-    elif in_post==2:
-        redirect_to_page=redirect(f"/user/{user}")
+    user = request.user
+
+    if in_post == 1:
+        redirect_to_page = redirect("/posts/post/details/{}".format(pk))
+    elif in_post == 2:
+        redirect_to_page = redirect(f"/user/{user}")
     else:
-        redirect_to_page=redirect("/posts/")
+        redirect_to_page = redirect("/posts/")
 
     return redirect_to_page
 
 
 @login_required
-def react_to_comment(request,pk):
-    
-    exact_comment=Comment.objects.get(pk=pk)
+def react_to_comment(request, pk):
+
+    exact_comment = Comment.objects.get(pk=pk)
 
     if request.user in exact_comment.likes.all():
         exact_comment.likes.remove(request.user)
@@ -64,15 +64,15 @@ def react_to_comment(request,pk):
 
 
 @login_required
-def create_comment(request,pk):
+def create_comment(request, pk):
 
-    if request.method=="POST":
-        form=CommentForm(request.POST)
+    if request.method == "POST":
+        form = CommentForm(request.POST)
         if form.is_valid():
-            raw_form=form.save(commit=False)
-            post=Post.objects.get(pk=pk)
-            raw_form.post_parent=post
-            raw_form.author=request.user
+            raw_form = form.save(commit=False)
+            post = Post.objects.get(pk=pk)
+            raw_form.post_parent = post
+            raw_form.author = request.user
             raw_form.save()
             return redirect("/posts/post/details/{}".format(pk))
 
@@ -80,63 +80,66 @@ def create_comment(request,pk):
 @login_required
 def create_post(request):
 
-    if request.method=="POST":
-        form=PostForm(request.POST)
+    if request.method == "POST":
+        form = PostForm(request.POST)
         if form.is_valid():
-            raw_form=form.save(commit=False)
-            raw_form.author=request.user
+            raw_form = form.save(commit=False)
+            raw_form.author = request.user
             raw_form.save()
 
             return redirect("/")
 
 
 @login_required
-def details_post(request,pk,template="posts/posts_details_page.html"):
+def details_post(request, pk, template="posts/posts_details_page.html"):
 
-    post=Post.objects.get(pk=pk)
-    post.amount_of_likes=len(post.likes.all())
-    comments=Comment.objects.filter(post_parent=post).order_by('-creation_date')
+    post = Post.objects.get(pk=pk)
+    post.amount_of_likes = len(post.likes.all())
+    comments = Comment.objects.filter(
+        post_parent=post).order_by('-creation_date')
 
     if comments:
-        comment_exist=True
+        comment_exist = True
     else:
-        comment_exist=False
+        comment_exist = False
 
-    update_form=PostForm(instance=post)
-    form=CommentForm()
+    update_form = PostForm(instance=post)
+    form = CommentForm()
 
     for comment in comments:
-        comment.amount_of_likes=len(comment.likes.all())
+        comment.amount_of_likes = len(comment.likes.all())
 
-    context={
-        'update_form':update_form,
-        'comment_exist':comment_exist,
-        'form':form,
-        'post':post,
-        'comments':comments,
+    context = {
+        'update_form': update_form,
+        'comment_exist': comment_exist,
+        'form': form,
+        'post': post,
+        'comments': comments,
     }
 
-    return render(request,template,context)
+    return render(request, template, context)
+
 
 @login_required
-def delete_post(request,pk):
-    post=Post.objects.get(pk=pk)
-    if post.author==request.user:
+def delete_post(request, pk):
+    post = Post.objects.get(pk=pk)
+    if post.author == request.user:
         post.delete()
 
     return redirect("/")
 
+
 @login_required
-def update_post(request,pk):
-    
-    found_post=Post.objects.filter(id=pk,author=request.user).order_by('-creation_date')
+def update_post(request, pk):
 
-    if request.method=="POST" and found_post:
+    found_post = Post.objects.filter(
+        id=pk, author=request.user).order_by('-creation_date')
 
-        form=PostForm(request.POST)
-        if form.is_valid():            
+    if request.method == "POST" and found_post:
+
+        form = PostForm(request.POST)
+        if form.is_valid():
             found_post.update(text=form.cleaned_data['text'])
             return redirect("/posts/post/details/{}".format(pk))
-
 
     return redirect("/")

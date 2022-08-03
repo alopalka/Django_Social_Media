@@ -6,32 +6,33 @@ from django.contrib.auth import login
 
 from authorization.forms import RegisterForm
 
-def register_view(request,template="authorization/register_page.html"):
+
+def register_view(request, template="authorization/register_page.html"):
 
     if request.method == "POST":
 
-        form=RegisterForm(request.POST)
+        form = RegisterForm(request.POST)
 
         if form.is_valid():
             form.save()
 
-            username=form.cleaned_data['username']
-            password=form.cleaned_data['password1']
-            email=form.cleaned_data['email']
-            user=authenticate(username=username,password=password,email=email,request=request)
-            login(request,user)
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password1']
+            email = form.cleaned_data['email']
+            user = authenticate(
+                username=username, password=password, email=email, request=request)
+            login(request, user)
 
             return redirect("mainapp:main")
-    
+
     else:
-        form=RegisterForm()
+        form = RegisterForm()
 
-
-    context={
-        'form':form,
+    context = {
+        'form': form,
     }
 
-    return render(request,template,context)
+    return render(request, template, context)
 
 
 def login_view(request, template="authorization/login_page.html"):
