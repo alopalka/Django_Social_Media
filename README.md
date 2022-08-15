@@ -2,7 +2,7 @@
 
 ### What is this project?
 
-This project is a simple social media inspired by Facebook. Created in Python framework called Django.
+This project is a simple social media clone inspired by Facebook. Created in Python framework called Django.
 
 ### What features this projects includes?
 
