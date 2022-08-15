@@ -148,7 +148,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 STATIC_URL = "static/"
 
 STATICFILES_DIRS = [
-    r"/home/alopalka/Desktop/wszystko/programowanie/gity/Django_Social_Media/social_media/static",
+    os.path.join(BASE_DIR, "static"),
 ]
 
 # Default primary key field type

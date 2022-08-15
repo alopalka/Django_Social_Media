@@ -1,5 +1,4 @@
 from rest_framework import serializers
-from yaml import serialize
 from chat.models import Message
 from chat.models import ChatRoom
 

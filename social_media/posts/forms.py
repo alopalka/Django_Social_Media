@@ -1,4 +1,3 @@
-from attr import field
 from posts.models import Comment
 from posts.models import Post
 from django import forms

@@ -41,9 +41,9 @@ Simple clone of Facebook. Created in Python framework called Django.
 
 ## Instalation
 
-In order to install project 
-
 ``` pip install -r requirements.txt```
+``` python3 manage.py makemigrations ```
+``` python3 manage.py migrate ```
 
 And you should be ready to go
 
