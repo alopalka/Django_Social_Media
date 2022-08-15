@@ -39,6 +39,14 @@ Simple clone of Facebook. Created in Python framework called Django.
 - Chat uses Django Rest Framework. To enable more dynamic interactions.
 - It is not realtime chating.
 
+## Instalation
+
+In order to install project 
+
+``` pip install -r requirements.txt```
+
+And you should be ready to go
+
 ## Screenshots
 
 ![scr21!](screenshots/src2.png)
